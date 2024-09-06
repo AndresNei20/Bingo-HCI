@@ -1,0 +1,19 @@
+.square {
+    font-size: 34px;
+    justify-content: center;
+    background: none;
+    border: 2px solid #353935;
+    border-radius: 8px;
+    color: #353935;
+    text-align: center;
+  }
+  
+  .sorted {
+    color: #ffea00;
+    border: 2px solid #ffea00;
+  }
+  
+  .square .char {
+    font-size: 32px;
+  }
+  
