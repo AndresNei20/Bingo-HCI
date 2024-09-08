@@ -2,11 +2,19 @@ import { Square } from "../square/Square";
 import "./table.css";
 
 export const Table = ({ squares }) => {
+  const columns = ['B', 'I', 'N', 'G', 'O'];
+
   return (
     <div className="table">
-      {squares.map((square) => {
-        return <Square key={square.id} square={square} />;
-      })}
+      {columns.map((char) => (
+        <div key={char} className="column">
+          {squares
+            .filter((square) => square.char === char)
+            .map((square) => (
+              <Square key={square.id} square={square} />
+            ))}
+        </div>
+      ))}
     </div>
   );
-}
+};

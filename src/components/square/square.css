@@ -1,20 +1,22 @@
 .square {
   width: 4rem;
-    font-size: 34px;
+  height: 4.7rem;
+    font-size: 30px;
     justify-content: center;
     background: none;
     border: 2px solid #353935;
     border-radius: 8px;
     color: #353935;
     text-align: center;
+    margin: 10px;
   }
   
   .sorted {
-    color: #ffea00;
-    border: 2px solid #ffea00;
+    color: #00f7ff;
+    border: 2px solid #00f7ff;
   }
   
   .square .char {
-    font-size: 32px;
+    font-size: 20px;
   }
   

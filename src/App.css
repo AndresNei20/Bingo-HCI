@@ -1,8 +1,34 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+
+}
+
+
+
+.current{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.sorter{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
 }
 
 

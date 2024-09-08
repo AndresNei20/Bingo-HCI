@@ -54,9 +54,10 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      
       <div className="container">
         <div className="sorter">
+        <NavBar />
           <div className="current">
             <div>{currentSorted.char}</div>
             {currentSorted.id}
@@ -65,9 +66,6 @@ function App() {
             Sortear
           </button>
           <br />
-          <button className="btn">
-            <img src={VoiceIcon} alt="Voice icon." />
-          </button>
         </div>
         <Table squares={squares} />
       </div>
