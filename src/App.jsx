@@ -5,13 +5,13 @@ import { Table } from './components/table/Table';
 import VoiceIcon from "../src/assets/voice-icon.svg";
 
 const getChar = function (number) {
-  if (number >= 0 && number < 9) {
+  if (number >= 0 && number < 8) {
     return "B";
-  } else if (number >= 9 && number < 17) {
+  } else if (number >= 8 && number < 16) {
     return "I";
-  } else if (number >= 17 && number < 25) {
+  } else if (number >= 16 && number < 24) {
     return "N";
-  } else if (number >= 25 && number < 33) {
+  } else if (number >= 24 && number < 32) {
     return "G";
   } else {
     return "O";
