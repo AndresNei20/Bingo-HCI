@@ -5,13 +5,13 @@ import { Table } from './components/table/Table';
 import VoiceIcon from "../src/assets/voice-icon.svg";
 
 const getChar = function (number) {
-  if (number >= 0 && number < 15) {
+  if (number >= 0 && number < 9) {
     return "B";
-  } else if (number >= 15 && number < 30) {
+  } else if (number >= 9 && number < 17) {
     return "I";
-  } else if (number >= 30 && number < 45) {
+  } else if (number >= 17 && number < 25) {
     return "N";
-  } else if (number >= 45 && number < 60) {
+  } else if (number >= 25 && number < 33) {
     return "G";
   } else {
     return "O";
@@ -24,7 +24,7 @@ const sample = function (arr) {
 
 function App() {
   const [squares, setSquares] = useState(
-    Array.from(Array(75)).map((_, idx) => {
+    Array.from(Array(40)).map((_, idx) => {
       return { id: idx + 1, char: getChar(idx), state: false };
     })
   );
