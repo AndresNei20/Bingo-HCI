@@ -1,7 +1,7 @@
 import { Square } from "../square/Square";
 import "./table.css";
 
-export const Table = ({ squares }) => {
+export const Table = ({ squares, newlySortedId }) => {
   const columns = ['B', 'I', 'N', 'G', 'O'];
 
   return (
@@ -10,9 +10,14 @@ export const Table = ({ squares }) => {
         <div key={char} className="column">
           {squares
             .filter((square) => square.char === char)
-            .map((square) => (
-              <Square key={square.id} square={square} />
-            ))}
+            .map((square) => {
+              const squareClass = square.state
+                ? square.id === newlySortedId
+                  ? 'square current-sorted' // Newly sorted
+                  : 'square sorted'        // Previously sorted
+                : 'square';                 // Not sorted
+              return <Square key={square.id} square={square} squareClass={squareClass} />;
+            })}
         </div>
       ))}
     </div>

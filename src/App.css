@@ -39,6 +39,12 @@
 
 .pick{
   font-size: 30px;
+  width: 200px;
+  color: rgb(17, 6, 43);
+  background-color: #00f7ff;
+  border-radius: 5px;
+  margin-top: 40%;
+
 }
 
 

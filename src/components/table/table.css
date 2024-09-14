@@ -1,9 +1,11 @@
-  
-  .table {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns for B, I, N, G, O */
-    grid-template-rows: repeat(8, 1fr); /* 8 rows for the numbers */
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    max-height: 100vh;
-  }
+.table {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns for B, I, N, G, O */
+  grid-template-rows: repeat(8, 1fr);    /* 8 rows for the numbers */
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  max-height: 100vh;
+}
+
+
+
