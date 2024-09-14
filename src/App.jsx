@@ -3,7 +3,9 @@ import './App.css';
 import { NavBar } from './components/navBar/NavBar';
 import { Table } from './components/table/Table';
 import { Question } from './components/question/Question';
-import VoiceIcon from "../src/assets/voice-icon.svg";
+import { Logo } from './components/logo/Logo';
+import { Footer } from './components/footer/Footer';
+
 
 // Google Sheets CSV URL
 const csvUrl = 'https://docs.google.com/spreadsheets/d/1Ugag0wfHr8lRwSVsqVXMn9rn9ITgxtX-d9j2qPg_JDk/gviz/tq?tqx=out:csv';
@@ -115,8 +117,13 @@ function App() {
         </div>
         <div className="content-bingo">
           <Table squares={squares} newlySortedId={newlySortedId} />
+          
         </div>
+       
       </div>
+      <Footer>
+      
+      </Footer>
     </div>
   );
 }
