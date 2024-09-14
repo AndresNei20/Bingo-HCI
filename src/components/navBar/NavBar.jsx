@@ -3,7 +3,7 @@ import "./navbar.css";
 export const NavBar = () => {
   return (
     <nav className="navbar">
-      <span> BINGO HCI </span>
+      <span> B I N G O </span>
     </nav>
   );
 }

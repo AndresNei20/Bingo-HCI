@@ -76,13 +76,13 @@ function App() {
           <NavBar />
           <div className="sorter">
             <div className="current">
-              <div>{currentSorted.char}{currentSorted.id}</div>
+              <div className='pick'>{currentSorted.char}{currentSorted.id}</div>
             </div>
-            <button className="btn" onClick={sortNumber}>
-              Sort
-            </button>
             <Question question={currentSorted.question} /> {/* Display the sorted question */}
           </div>
+          <button className="btn" onClick={sortNumber}>
+            Sort
+          </button>
         </div>
         <div className='content-bingo'>
           <Table squares={squares} />
