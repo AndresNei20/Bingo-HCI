@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { NavBar } from './components/navBar/NavBar';
 import { Table } from './components/table/Table';
 import { Question } from './components/question/Question';
 import VoiceIcon from "../src/assets/voice-icon.svg";
 
-const questions = [ /* Your predefined questions array */ ];
+// Google Sheets CSV URL
+const csvUrl = 'https://docs.google.com/spreadsheets/d/1Ugag0wfHr8lRwSVsqVXMn9rn9ITgxtX-d9j2qPg_JDk/gviz/tq?tqx=out:csv';
 
 // Function to get the letter for each number
 const getChar = function (number) {
@@ -21,17 +22,67 @@ const sample = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-function App() {
-  const [squares, setSquares] = useState(
-    Array.from(Array(40)).map((_, idx) => ({
-      id: idx + 1,
-      char: getChar(idx),
-      state: false,
-      question: questions[idx],
-    }))
-  );
+// Function to fetch CSV data from Google Sheets
+const fetchCSV = async (url) => {
+  const response = await fetch(url);
+  const data = await response.text();
+  return data.split('\n').map((row) => row.split(','));
+};
 
+function App() {
+  const [squares, setSquares] = useState([]);
   const [newlySortedId, setNewlySortedId] = useState(null);
+
+  // Function to check for updates in the spreadsheet
+  const checkForUpdates = async () => {
+    const csvData = await fetchCSV(csvUrl);
+    
+    // Assuming the questions are in the first column of the CSV
+    const questions = csvData.map(row => row[0]);
+
+    // Check if the fetched questions differ from the current ones
+    const isDifferent = squares.some((square, idx) => square.question !== questions[idx]);
+
+    // If there are changes, update the state
+    if (isDifferent) {
+      setSquares(
+        Array.from(Array(40)).map((_, idx) => ({
+          id: idx + 1,
+          char: getChar(idx),
+          state: squares[idx]?.state || false, // Preserve current state
+          question: questions[idx],
+        }))
+      );
+    }
+  };
+
+  // Fetch the questions from Google Sheets and set the initial state
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const csvData = await fetchCSV(csvUrl);
+      
+      // Assuming the questions are in the first column of the CSV
+      const questions = csvData.map(row => row[0]);
+
+      // Initialize squares with the fetched questions
+      setSquares(
+        Array.from(Array(40)).map((_, idx) => ({
+          id: idx + 1,
+          char: getChar(idx),
+          state: false,
+          question: questions[idx],
+        }))
+      );
+    };
+
+    fetchQuestions();
+
+    // Set up a polling interval to check for changes every 10 seconds
+    const intervalId = setInterval(checkForUpdates, 10000); // 10 seconds interval
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []);
 
   const sortNumber = () => {
     const newSorted = sample(squares.filter((square) => !square.state));
