@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { NavBar } from './components/navBar/NavBar';
 import { Table } from './components/table/Table';
-import { Question } from './components/question/Question';
-import { Logo } from './components/logo/Logo';
 import { Footer } from './components/footer/Footer';
+import { Question } from './components/Question/Question';
 
 
 // Google Sheets CSV URL
