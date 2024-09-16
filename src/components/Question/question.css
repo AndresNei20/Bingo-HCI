@@ -5,6 +5,8 @@
     border-radius: 5px;
     min-width: 500px;
     max-width: 500px;
+    height: fit-content;
+    min-height: 200px;
   }
   
   .question h3 {
