@@ -4,6 +4,7 @@
     background-color: #1c0943;
     border-radius: 5px;
     min-width: 500px;
+    max-width: 500px;
   }
   
   .question h3 {
