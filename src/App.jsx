@@ -5,7 +5,6 @@ import { Table } from './components/table/Table';
 import { Footer } from './components/footer/Footer';
 import { Question } from './components/Question/Question';
 
-
 // Google Sheets CSV URL
 const csvUrl = 'https://docs.google.com/spreadsheets/d/1Ugag0wfHr8lRwSVsqVXMn9rn9ITgxtX-d9j2qPg_JDk/gviz/tq?tqx=out:csv';
 
