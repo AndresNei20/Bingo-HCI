@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import { NavBar } from './components/navBar/NavBar';
-import { Table } from './components/table/Table';
-import { Footer } from './components/footer/Footer';
-import { Question } from './components/Question/Question';
+import { useState, useEffect } from "react";
+import "./App.css";
+import { NavBar } from "./components/navBar/NavBar";
+import { Table } from "./components/table/Table";
+import { Footer } from "./components/footer/Footer";
+import { Question } from "./components/Question/Question";
 
 // Google Sheets CSV URL
-const csvUrl = 'https://docs.google.com/spreadsheets/d/1Ugag0wfHr8lRwSVsqVXMn9rn9ITgxtX-d9j2qPg_JDk/gviz/tq?tqx=out:csv';
+const csvUrl =
+  "https://docs.google.com/spreadsheets/d/1Ugag0wfHr8lRwSVsqVXMn9rn9ITgxtX-d9j2qPg_JDk/gviz/tq?tqx=out:csv";
 
 // Function to get the letter for each number
 const getChar = function (number) {
@@ -26,7 +27,7 @@ const sample = function (arr) {
 const fetchCSV = async (url) => {
   const response = await fetch(url);
   const data = await response.text();
-  return data.split('\n').map((row) => row.split(','));
+  return data.split("\n").map((row) => row.split(","));
 };
 
 function App() {
@@ -36,12 +37,14 @@ function App() {
   // Function to check for updates in the spreadsheet
   const checkForUpdates = async () => {
     const csvData = await fetchCSV(csvUrl);
-    
+
     // Assuming the questions are in the first column of the CSV
-    const questions = csvData.map(row => row[0]);
+    const questions = csvData.map((row) => row[0]);
 
     // Check if the fetched questions differ from the current ones
-    const isDifferent = squares.some((square, idx) => square.question !== questions[idx]);
+    const isDifferent = squares.some(
+      (square, idx) => square.question !== questions[idx]
+    );
 
     // If there are changes, update the state
     if (isDifferent) {
@@ -60,9 +63,9 @@ function App() {
   useEffect(() => {
     const fetchQuestions = async () => {
       const csvData = await fetchCSV(csvUrl);
-      
+
       // Assuming the questions are in the first column of the CSV
-      const questions = csvData.map(row => row[0]);
+      const questions = csvData.map((row) => row[0]);
 
       // Initialize squares with the fetched questions
       setSquares(
@@ -103,11 +106,17 @@ function App() {
           <NavBar />
           <div className="sorter">
             <div className="current">
-              <div className='pick'>
-                {newlySortedId ? `${getChar(newlySortedId - 1)}${newlySortedId}` : "Sort a number"}
+              <div className="pick">
+                {newlySortedId
+                  ? `${getChar(newlySortedId - 1)}${newlySortedId}`
+                  : "Sort a number"}
               </div>
             </div>
-            <Question question={newlySortedId ? squares[newlySortedId - 1].question : ""} />
+            <Question
+              question={
+                newlySortedId ? squares[newlySortedId - 1].question : ""
+              }
+            />
           </div>
           <button className="btn" onClick={sortNumber}>
             Sort
@@ -115,13 +124,9 @@ function App() {
         </div>
         <div className="content-bingo">
           <Table squares={squares} newlySortedId={newlySortedId} />
-          
         </div>
-       
       </div>
-      <Footer>
-      
-      </Footer>
+      <Footer></Footer>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import './question.css';
+import "./question.css";
 
 export const Question = ({ question }) => {
   return (
