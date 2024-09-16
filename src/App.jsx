@@ -109,7 +109,7 @@ function App() {
               <div className="pick">
                 {newlySortedId
                   ? `${getChar(newlySortedId - 1)}${newlySortedId}`
-                  : "Sort a number"}
+                  : ""}
               </div>
             </div>
             <Question
