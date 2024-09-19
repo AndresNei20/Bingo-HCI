@@ -109,7 +109,7 @@ function App() {
               <div className="pick">
                 {newlySortedId
                   ? `${getChar(newlySortedId - 1)}${newlySortedId}`
-                  : ""}
+                  : "?"}
               </div>
             </div>
             <Question
@@ -121,12 +121,13 @@ function App() {
           <button className="btn" onClick={sortNumber}>
             Sort
           </button>
+          <Footer></Footer>
         </div>
         <div className="content-bingo">
           <Table squares={squares} newlySortedId={newlySortedId} />
         </div>
       </div>
-      <Footer></Footer>
+      
     </div>
   );
 }

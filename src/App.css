@@ -17,6 +17,7 @@
 .content-info{
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .content-bingo{
   display: flex;
@@ -39,11 +40,11 @@
 }
 
 .pick{
-  font-size: 22px;
+  font-size: 40px;
   width: 200px;
   color: rgb(35, 255, 251);
   border-radius: 5px;
-  margin-top: 20%;
+  margin-top: 8%;
 
 }
 
