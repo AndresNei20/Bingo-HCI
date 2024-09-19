@@ -33,6 +33,7 @@ const fetchCSV = async (url) => {
 function App() {
   const [squares, setSquares] = useState([]);
   const [newlySortedId, setNewlySortedId] = useState(null);
+  const [highlightedLetter, setHighlightedLetter] = useState(null);
 
   // Function to check for updates in the spreadsheet
   const checkForUpdates = async () => {
@@ -91,6 +92,7 @@ function App() {
     const newSorted = sample(squares.filter((square) => !square.state));
     if (newSorted) {
       setNewlySortedId(newSorted.id); // Set the newly sorted square ID
+      setHighlightedLetter(newSorted.char); // Set the highlighted letter
       setSquares((prevState) =>
         prevState.map((square) =>
           square.id === newSorted.id ? { ...square, state: true } : square
@@ -103,12 +105,12 @@ function App() {
     <div className="App">
       <div className="container">
         <div className="content-info">
-          <NavBar />
+          <NavBar highlightedLetter={highlightedLetter} />
           <div className="sorter">
             <div className="current">
               <div className="pick">
                 {newlySortedId
-                  ? `${getChar(newlySortedId - 1)}${newlySortedId}`
+                  ? `${newlySortedId}` // Only show the number
                   : "?"}
               </div>
             </div>
@@ -127,7 +129,6 @@ function App() {
           <Table squares={squares} newlySortedId={newlySortedId} />
         </div>
       </div>
-      
     </div>
   );
 }

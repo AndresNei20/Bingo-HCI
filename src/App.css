@@ -40,11 +40,13 @@
 }
 
 .pick{
-  font-size: 40px;
+  font-size: 50px;
+  font-weight: 700;
   width: 200px;
   color: rgb(35, 255, 251);
   border-radius: 5px;
-  margin-top: 8%;
+  margin-top: 0%;
+  
 
 }
 

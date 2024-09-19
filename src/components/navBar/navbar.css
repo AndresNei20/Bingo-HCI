@@ -1,8 +1,23 @@
-.navbar span{
-    font-size: 60px;
-    font-weight: bold;
-    width: 100%;
-    text-align: center;
-    color: #9C6DD8;
-  }
-  
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: white;
+}
+
+.navbar span {
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.letter {
+  margin: 0 10px;
+  font-size: 36px;
+}
+
+.highlight {
+  color: rgb(0, 247, 255); /* Puedes elegir el color que prefieras */
+  font-weight: bold;
+}
