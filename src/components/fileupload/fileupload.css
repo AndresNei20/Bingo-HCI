@@ -1,0 +1,34 @@
+.file-upload {
+    background-color: #3b2f7567;
+    border: 2px;
+    padding: 15%;
+    margin-top: 20%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-file-upload {
+    background-color: #6b57ea5b;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20%;
+    width: 140px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    background-color: rgb(125, 95, 222);
+}
+
+.upload-icon {
+    width: 25px;
+}

@@ -1,3 +1,4 @@
+import "./fileupload.css";
 import React from "react";
 import Papa from "papaparse"; // For CSV parsing
 import * as XLSX from "xlsx"; // For Excel parsing
@@ -35,10 +36,24 @@ const FileUpload = ({ onFileUpload }) => {
     }
   };
 
+ 
   return (
     <div className="file-upload">
-      <input type="file" accept=".csv, .xlsx, .xls" onChange={handleFileUpload} />
-      <p>Upload a CSV or Excel file with 40 questions (one per row)</p>
+      {/* Hide the default input */}
+      <input
+        type="file"
+        id="file"
+        accept=".csv, .xlsx, .xls"
+        onChange={handleFileUpload}
+        style={{ display: "none" }} // Hide the input
+      />
+
+      {/* Custom label to style the input */}
+      <label htmlFor="file" className="custom-file-upload">
+        <img className="upload-icon" src="./uploadicon.svg" alt="Upload icon" /> {/* Add your icon here */}
+        Upload File
+      </label>
+      <p className="directions-upload">The file must be a CSV or Excel file with 40 Questions</p>
     </div>
   );
 };

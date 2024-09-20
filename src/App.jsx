@@ -10,6 +10,7 @@ function App() {
   const [squares, setSquares] = useState([]);
   const [newlySortedId, setNewlySortedId] = useState(null);
   const [highlightedLetter, setHighlightedLetter] = useState(null);
+  const [fileUploaded, setFileUploaded] = useState(false); // State to track if the file is uploaded
 
   // Function to get the letter for each number
   const getChar = (number) => {
@@ -35,6 +36,7 @@ function App() {
   // Function to handle file upload data
   const handleFileUpload = (questions) => {
     initializeSquares(questions);
+    setFileUploaded(true); // Hide the FileUpload component after the file is uploaded
   };
 
   const sortNumber = () => {
@@ -55,27 +57,34 @@ function App() {
       <div className="container">
         <div className="content-info">
           <NavBar highlightedLetter={highlightedLetter} />
-          <div className="sorter">
-            <div className="current">
-              <div className="pick">
-                {newlySortedId ? `${newlySortedId}` : "?"}
+          {fileUploaded ? ( // Conditionally render FileUpload based on fileUploaded state
+            <>
+              <div className="sorter">
+                <div className="current">
+                  <div className="pick">
+                    {newlySortedId ? `${newlySortedId}` : "?"}
+                  </div>
+                </div>
+                <Question
+                  question={
+                    newlySortedId ? squares[newlySortedId - 1].question : ""
+                  }
+                />
               </div>
-            </div>
-            <Question
-              question={
-                newlySortedId ? squares[newlySortedId - 1].question : ""
-              }
-            />
+              <button className="btn" onClick={sortNumber}>
+                Sort
+              </button>
+              <Footer />
+            </>
+          ) : (
+            <FileUpload onFileUpload={handleFileUpload} /> // Show FileUpload component initially
+          )}
+        </div>
+        {fileUploaded && ( // Only show the Table if a file has been uploaded
+          <div className="content-bingo">
+            <Table squares={squares} newlySortedId={newlySortedId} />
           </div>
-          <button className="btn" onClick={sortNumber}>
-            Sort
-          </button>
-          <Footer></Footer>
-        </div>
-        <div className="content-bingo">
-          <Table squares={squares} newlySortedId={newlySortedId} />
-        </div>
-        <FileUpload onFileUpload={handleFileUpload} />
+        )}
       </div>
     </div>
   );
