@@ -1,9 +1,16 @@
 import "./fileupload.css";
-import React from "react";
+import React, { useState } from "react";
 import Papa from "papaparse"; // For CSV parsing
 import * as XLSX from "xlsx"; // For Excel parsing
 
+// Google Sheets CSV URL (this will act as the template for teachers to download)
+const templateUrl = "https://docs.google.com/spreadsheets/d/1Ugag0wfHr8lRwSVsqVXMn9rn9ITgxtX-d9j2qPg_JDk/export?format=xlsx";
+const materialUrl = "https://drive.google.com/uc?export=download&id=1cwE-9_Oz7nCtHdY552PM6J6oc2ashqMG"
+
+
 const FileUpload = ({ onFileUpload }) => {
+  const [fileUploaded, setFileUploaded] = useState(false); // State to track if file has been uploaded
+
   // Function to handle file upload and parse CSV or Excel
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -15,6 +22,7 @@ const FileUpload = ({ onFileUpload }) => {
         complete: (result) => {
           const questions = result.data.map((row) => row[0]).slice(0, 40);
           onFileUpload(questions); // Send questions back to App component
+          setFileUploaded(true); // Mark file as uploaded
         },
         error: (error) => console.error("Error parsing CSV file:", error),
       });
@@ -29,6 +37,7 @@ const FileUpload = ({ onFileUpload }) => {
         const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
         const questions = json.map((row) => row[0]).slice(0, 40);
         onFileUpload(questions); // Send questions back to App component
+        setFileUploaded(true); // Mark file as uploaded
       };
       reader.readAsArrayBuffer(file);
     } else {
@@ -36,7 +45,6 @@ const FileUpload = ({ onFileUpload }) => {
     }
   };
 
- 
   return (
     <div className="file-upload">
       {/* Hide the default input */}
@@ -49,11 +57,29 @@ const FileUpload = ({ onFileUpload }) => {
       />
 
       {/* Custom label to style the input */}
-      <label htmlFor="file" className="custom-file-upload">
-        <img className="upload-icon" src="./uploadicon.svg" alt="Upload icon" /> {/* Add your icon here */}
-        Upload File
-      </label>
-      <p className="directions-upload">The file must be a CSV or Excel file with 40 Questions</p>
+      {!fileUploaded && (
+        <>
+          <label htmlFor="file" className="custom-file-upload">
+            <img className="upload-icon" src="./uploadicon.svg" alt="Upload icon" /> {/* Add your icon here */}
+            Upload Your File
+          </label>
+          <p className="directions-upload">The file must be a CSV or Excel with 40 questions (one per row).</p>
+
+          <div className="download-links">
+          <a href={templateUrl} download="question-template.xlsx" className="download-template-btn">
+          <img className="upload-icon" src="./download.svg" alt="Upload icon" />
+          Download Question Template
+          </a>
+          <a href={materialUrl} download="bingo-cards.pdf" className="download-template-btn">
+          <img className="upload-icon" src="./download.svg" alt="Upload icon" />
+            Download Bingo Cards File
+          </a>
+          </div>
+
+        </>
+      )}
+
+      {fileUploaded && <p className="upload-success-message">File uploaded successfully!</p>}
     </div>
   );
 };

@@ -1,8 +1,8 @@
 .file-upload {
     background-color: #3b2f7567;
     border: 2px;
-    padding: 15%;
-    margin-top: 20%;
+    padding: 10%;
+    margin-top: 8%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -15,12 +15,12 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 20%;
-    width: 140px;
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    gap: 10%;
+    width: 160px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -31,4 +31,34 @@
 
 .upload-icon {
     width: 25px;
+}
+
+.download-links{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    margin-top: 20px;
+}
+
+.download-template-btn{
+    color: #aa93ff;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    text-align: center;
+    align-items: center;
+    gap: 15px;
+    border: 2px solid #aa93ff;
+    border-radius: 5px;
+    width: 380px;
+    padding: 10px;
+    
+}
+
+.download-template-btn:hover{
+   background-color: #110c315b;
 }
