@@ -5,7 +5,7 @@ import * as XLSX from "xlsx"; // For Excel parsing
 
 // Google Sheets CSV URL (this will act as the template for teachers to download)
 const templateUrl = "https://docs.google.com/spreadsheets/d/1Ugag0wfHr8lRwSVsqVXMn9rn9ITgxtX-d9j2qPg_JDk/export?format=xlsx";
-const materialUrl = "https://drive.google.com/uc?export=download&id=1cwE-9_Oz7nCtHdY552PM6J6oc2ashqMG"
+const materialUrl = "https://drive.google.com/uc?export=download&id=1cwE-9_Oz7nCtHdY552PM6J6oc2ashqMG";
 
 
 const FileUpload = ({ onFileUpload }) => {
@@ -20,7 +20,8 @@ const FileUpload = ({ onFileUpload }) => {
       // Parse CSV file
       Papa.parse(file, {
         complete: (result) => {
-          const questions = result.data.map((row) => row[0]).slice(0, 40);
+          // Skip first 3 rows and get data starting from column B
+          const questions = result.data.slice(3, 43).map((row) => row[1]);
           onFileUpload(questions); // Send questions back to App component
           setFileUploaded(true); // Mark file as uploaded
         },
@@ -35,7 +36,9 @@ const FileUpload = ({ onFileUpload }) => {
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const json = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-        const questions = json.map((row) => row[0]).slice(0, 40);
+
+        // Skip first 3 rows and get data starting from column B (index 1)
+        const questions = json.slice(3, 43).map((row) => row[1]);
         onFileUpload(questions); // Send questions back to App component
         setFileUploaded(true); // Mark file as uploaded
       };
@@ -63,19 +66,18 @@ const FileUpload = ({ onFileUpload }) => {
             <img className="upload-icon" src="./uploadicon.svg" alt="Upload icon" /> {/* Add your icon here */}
             Upload Your File
           </label>
-          <p className="directions-upload">The file must be a CSV or Excel with 40 questions (one per row).</p>
+          <p className="directions-upload">The file must be a CSV or Excel with 40 questions (one per row starting at row 4, column B).</p>
 
           <div className="download-links">
-          <a href={templateUrl} download="question-template.xlsx" className="download-template-btn">
-          <img className="upload-icon" src="./download.svg" alt="Upload icon" />
-          Download Question Template
-          </a>
-          <a href={materialUrl} download="bingo-cards.pdf" className="download-template-btn">
-          <img className="upload-icon" src="./download.svg" alt="Upload icon" />
-            Download Bingo Cards File
-          </a>
+            <a href={templateUrl} download="question-template.xlsx" className="download-template-btn">
+              <img className="upload-icon" src="./download.svg" alt="Upload icon" />
+              Download Question Template
+            </a>
+            <a href={materialUrl} download="bingo-cards.pdf" className="download-template-btn">
+              <img className="upload-icon" src="./download.svg" alt="Upload icon" />
+              Download Bingo Cards File
+            </a>
           </div>
-
         </>
       )}
 
