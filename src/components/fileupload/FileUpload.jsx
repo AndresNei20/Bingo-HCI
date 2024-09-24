@@ -66,7 +66,7 @@ const FileUpload = ({ onFileUpload }) => {
             <img className="upload-icon" src="./uploadicon.svg" alt="Upload icon" /> {/* Add your icon here */}
             Upload Your File
           </label>
-          <p className="directions-upload">The file must be a CSV or Excel with 40 questions (one per row starting at row 4, column B).</p>
+          <p className="directions-upload">The file must be a CSV or Excel with 40 questions. You can download the template below and use it as your guide </p>
 
           <div className="download-links">
             <a href={templateUrl} download="question-template.xlsx" className="download-template-btn">
