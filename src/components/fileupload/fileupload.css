@@ -62,3 +62,13 @@
 .download-template-btn:hover{
    background-color: #110c315b;
 }
+
+.directions-upload{
+    width: 380px;
+    margin-top: 30px;
+}
+
+.highlighted-paragraph{
+    font-weight: 600;
+    margin-top: 0px;
+}
