@@ -6,7 +6,9 @@ export const Question = ({ question, time, timerKey }) => {
     <div className="question">
       <h3>Question:</h3>
       <p>{question || "Push Sort button to display a question"}</p>
+      <div className="time-div">
       {time && <Timer key={timerKey} time={time} />} {/* Render Timer only if time is passed */}
+      </div>
     </div>
   );
 };
