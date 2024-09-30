@@ -6,8 +6,8 @@ export const Footer = () => {
   return (
     <div className="footer">
       <Logo></Logo>
-      <p>Designed by Paola Velásquez</p>
-      <p>Human-Computer Interaction</p>
+      <br></br>
+      <span>Designed by Paola Velásquez | Human-Computer Interaction</span>
     </div>
   );
 };
