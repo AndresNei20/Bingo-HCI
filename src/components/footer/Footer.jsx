@@ -7,6 +7,7 @@ export const Footer = () => {
     <div className="footer">
       <Logo></Logo>
       <p>Designed by Paola Velásquez</p>
+      <p>Human-Computer Interaction</p>
     </div>
   );
 };

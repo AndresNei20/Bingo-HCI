@@ -3,7 +3,6 @@ import "./navbar.css";
 export const NavBar = ({ highlightedLetter }) => {
   return (
     <nav className="navbar">
-      <p>Human-Computer Interaction</p>
       <span>
         <span className={`letter ${highlightedLetter === "B" ? "highlight" : ""}`}>B</span>
         <span className={`letter ${highlightedLetter === "I" ? "highlight" : ""}`}>I</span>
