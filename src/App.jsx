@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { NavBar } from "./components/navBar/NavBar";
 import { Table } from "./components/table/Table";
 import { Footer } from "./components/footer/Footer";
 import { Question } from "./components/Question/Question";
-import FileUpload from "./components/FileUpload/FileUpload"; // Import the new FileUpload component
+import FileUpload from "./components/FileUpload/FileUpload";
+import Timer from "./components/Timer/Timer"; // Import the new Timer component
 
 function App() {
   const [squares, setSquares] = useState([]);
   const [newlySortedId, setNewlySortedId] = useState(null);
   const [highlightedLetter, setHighlightedLetter] = useState(null);
-  const [fileUploaded, setFileUploaded] = useState(false); // State to track if the file is uploaded
+  const [fileUploaded, setFileUploaded] = useState(false);
+  const [timerKey, setTimerKey] = useState(0); // To trigger timer reset when sorting new question
 
   // Function to get the letter for each number
   const getChar = (number) => {
@@ -21,22 +23,23 @@ function App() {
     return "O";
   };
 
-  // Initialize squares with questions
-  const initializeSquares = (questions) => {
+  // Initialize squares with questions and time
+  const initializeSquares = (questionsWithTime) => {
     setSquares(
       Array.from(Array(40)).map((_, idx) => ({
         id: idx + 1,
         char: getChar(idx),
         state: false,
-        question: questions[idx],
+        question: questionsWithTime[idx].question,
+        time: questionsWithTime[idx].time, // Set the time for each square
       }))
     );
   };
 
   // Function to handle file upload data
-  const handleFileUpload = (questions) => {
-    initializeSquares(questions);
-    setFileUploaded(true); // Hide the FileUpload component after the file is uploaded
+  const handleFileUpload = (questionsWithTime) => {
+    initializeSquares(questionsWithTime); // Initialize with question and time
+    setFileUploaded(true);
   };
 
   const sortNumber = () => {
@@ -49,6 +52,7 @@ function App() {
           square.id === newSorted.id ? { ...square, state: true } : square
         )
       );
+      setTimerKey((prevKey) => prevKey + 1); // Reset the timer when a new question is sorted
     }
   };
 
@@ -57,7 +61,7 @@ function App() {
       <div className="container">
         <div className="content-info">
           <NavBar highlightedLetter={highlightedLetter} />
-          {fileUploaded ? ( // Conditionally render FileUpload based on fileUploaded state
+          {fileUploaded ? (
             <>
               <div className="sorter">
                 <div className="current">
@@ -69,6 +73,8 @@ function App() {
                   question={
                     newlySortedId ? squares[newlySortedId - 1].question : ""
                   }
+                  time={newlySortedId ? squares[newlySortedId - 1].time : null} // Pass the time for the current question
+                  timerKey={timerKey} // Pass the key to reset the timer
                 />
               </div>
               <button className="btn" onClick={sortNumber}>
@@ -77,10 +83,10 @@ function App() {
               <Footer />
             </>
           ) : (
-            <FileUpload onFileUpload={handleFileUpload} /> // Show FileUpload component initially
+            <FileUpload onFileUpload={handleFileUpload} />
           )}
         </div>
-        {fileUploaded && ( // Only show the Table if a file has been uploaded
+        {fileUploaded && (
           <div className="content-bingo">
             <Table squares={squares} newlySortedId={newlySortedId} />
           </div>

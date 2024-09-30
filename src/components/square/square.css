@@ -6,9 +6,9 @@
   font-size: 30px;
   justify-content: center;
   background: none;
-  border: 2px solid #3b3460;
+  border: 2px solid #bcafff;
   border-radius: 8px;
-  color: #3b3460;
+  color: #c8bcff;
   text-align: center;
   margin: 10px;
   display: flex;
@@ -17,15 +17,15 @@
 }
 
 .sorted {
-  color: #ee00ff;
+  color: #97faa6;
   background-color: #3b346055;
-  border: 2px solid #ee00ff;
+  border: 2px solid #97faa6;
 }
 
 .current-sorted {
   color: rgb(17, 6, 43);
-  background-color: #00f7ff;
-  border: 2px solid #00f7ff;
+  background-color: #ff0095;
+  border: 2px solid #ff0095;
 }
 
 .square .char {
